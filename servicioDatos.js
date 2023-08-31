@@ -5,15 +5,14 @@ const finDeTransmisionDeDatos = function(id) {
     });
 };
 
-const obtenDatosDeInternet = function(id, duracion) {
+async function obtenDatosDeInternet(id, duracion) {
     console.log('Proceso', id, 'obteniendo datos de Internet');
-    return new Promise(function(resolve, reject) {
+    await new Promise(function(resolve) {
         setTimeout(function() {
-            finDeTransmisionDeDatos(id)
-                .then(resolve)
-                .catch(reject);
+            resolve();
         }, duracion);
     });
-};
+    await finDeTransmisionDeDatos(id);
+}
 
 module.exports.getDatos = obtenDatosDeInternet;
